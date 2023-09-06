@@ -2,9 +2,10 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import appConfig from '../../config/app.config';
 import { Request } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor() {
+  constructor(private configService: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
@@ -21,7 +22,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
           }
         },
       ]),
-      secretOrKey: appConfig().appSecret,
+      secretOrKey: configService.get('SECRET'),
     });
   }
 
