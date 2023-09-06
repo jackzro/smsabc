@@ -10,7 +10,7 @@ import { ProjectsModule } from './modules/projects/projects.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.dev'] }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env'] }),
     TypeOrmModule.forRootAsync(typeOrmConfigAsync),
     AuthModule,
     UserModule,
